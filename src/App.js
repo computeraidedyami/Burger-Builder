@@ -37,7 +37,7 @@ class App extends Component {//Component has a this.setState method that allows 
     });
     // Instead of spread below it could  be:
     // const person = Object.assign({},this.state.persons[personIndex]);
-    const person ={... this.state.persons[personIndex]};
+    const person ={...this.state.persons[personIndex]};
 person.name = event.target.value
 
 const persons = [...this.state.persons];
@@ -64,12 +64,13 @@ this.setState({persons: persons})
   render() {
     // A hover style in an inline css is difficult to do 
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color:'white',
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
       cursor: "pointer"
-    }
+    };
 let persons = null;
 if (this.state.showPersons){
   persons = (
@@ -100,12 +101,20 @@ if (this.state.showPersons){
             age={this.state.persons[2].age} /> */}
         </div> 
   );
+  
+  style.backgroundColor = 'red';
 }
-
+const classes = [];
+if (this.state.persons.length <=2){
+  classes.push('red');//classes = ['red'])
+}
+if (this.state.persons.length <=1){
+  classes.push('bold');// classes = ['red','bold']
+}
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className = {classes.join(' ')}>This is really working!</p>
         {/*onClick is used with a capital C in react. We are passing a reference of switchNH NOT executing it*/}
         {/* <button onClick={this.switchNameHandler.bind(this,'Maximilian', 'something')}>Switch Name</button> */}
         <button style={style}
